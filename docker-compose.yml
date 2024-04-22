@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
   db:
-    image: postgres:16.2-alpine
+    build: .
     restart: always
     environment:
       POSTGRES_DB: entreprise
@@ -12,6 +12,7 @@ services:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
+      - ./backup:/var/lib/postgresql/backup
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
